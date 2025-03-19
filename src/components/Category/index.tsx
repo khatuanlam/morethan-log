@@ -1,8 +1,8 @@
+import styled from "@emotion/styled"
 import { useRouter } from "next/router"
 import React from "react"
-import { COLOR_SET } from "./constants"
-import styled from "@emotion/styled"
 import { colors } from "src/styles"
+import { COLOR_SET } from "./constants"
 
 export const getColorClassByName = (name: string): string => {
   try {
@@ -18,20 +18,20 @@ export const getColorClassByName = (name: string): string => {
 }
 
 type Props = {
-  children: string
+  children?: string
   readOnly?: boolean
 }
 
 const Category: React.FC<Props> = ({ readOnly = false, children }) => {
   const router = useRouter()
 
-  const handleClick = (value: string) => {
-    if (readOnly) return
+  const handleClick = (value?: string) => {
+    if (readOnly || !value) return
     router.push(`/?category=${value}`)
   }
   return (
     <StyledWrapper
-      onClick={() => handleClick(children)}
+      onClick={() => children && handleClick(children)}
       css={{
         backgroundColor: getColorClassByName(children),
         cursor: readOnly ? "default" : "pointer",
