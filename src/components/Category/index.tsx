@@ -26,7 +26,7 @@ const Category: React.FC<Props> = ({ readOnly = false, children }) => {
   const router = useRouter()
 
   const handleClick = (value?: string) => {
-    if (readOnly || !value) return
+    if (readOnly) return
     router.push(`/?category=${value}`)
   }
   return (
