@@ -22,13 +22,14 @@ type Props = {
   readOnly?: boolean
 }
 
-const Category: React.FC<Props> = ({ readOnly = false, children }) => {
+const Category = ({ readOnly = false, children }: Props) => {
   const router = useRouter()
 
   const handleClick = (value?: string) => {
     if (readOnly) return
     router.push(`/?category=${value}`)
   }
+
   return (
     <StyledWrapper
       onClick={() => typeof children === 'string' && handleClick(children)}
@@ -41,6 +42,7 @@ const Category: React.FC<Props> = ({ readOnly = false, children }) => {
     </StyledWrapper>
   )
 }
+
 
 export default Category
 
