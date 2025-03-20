@@ -18,7 +18,7 @@ export const getColorClassByName = (name: string): string => {
 }
 
 type Props = {
-  children?: string
+  children?: React.ReactNode
   readOnly?: boolean
 }
 
@@ -31,9 +31,9 @@ const Category: React.FC<Props> = ({ readOnly = false, children }) => {
   }
   return (
     <StyledWrapper
-      onClick={() => children && handleClick(children)}
+      onClick={() => typeof children === 'string' && handleClick(children)}
       css={{
-        backgroundColor: getColorClassByName(children),
+        backgroundColor: typeof children === 'string' ? getColorClassByName(children) : undefined,
         cursor: readOnly ? "default" : "pointer",
       }}
     >
